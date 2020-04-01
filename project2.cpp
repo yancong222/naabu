@@ -40,21 +40,20 @@ bool IsValidDNASequence(const std::string &input)
     string temp_ipt = input;
     // define the string variable "ATCG"
     string atcg = "ATCG";
-    // create a flage, initially true
-    bool flag = true;
+    ////////////////////////////don't need a flag just return true or false
     // input size
     int iptsize = temp_ipt.size();
     // loop over each character in temp_ipt
-    for (int i = 0; i < iptsize; ++i)
+    for (int i = 0; i < iptsize; ++i)///////////////a for (x:input) may work better and be simpler
     {
         string::size_type pos = atcg.find(temp_ipt[i]);
         // the flag becomes flase if the char is not found in atcg
         if (pos == string::npos)
         {
-            flag = false;
+            return false;
         }
     }
-    return flag; // return a bool value
+    return true; // return a bool value
 }
 
 /*
@@ -85,7 +84,7 @@ void GetReverseComplementSequence(const std::string &input, std::string *const o
     // the size of temp_ipt
     int iptsize = temp_ipt.size();
     // loop over each char in temp_ipt
-    for (int i = 0; i < iptsize; ++i)
+    for (int i = 0; i < iptsize; ++i) ///////////////a reverse algorithm would work too
     {
         // append the last element in temp_ipt to temp_opt first
         // then apend the second to last, etc.
@@ -98,7 +97,7 @@ void GetReverseComplementSequence(const std::string &input, std::string *const o
     for (int j = 0; j < (optsize); ++j)
     {
         char C = temp_opt[j];
-        switch (C)
+        switch (C) ///////////cool use of switch
         { // Classify each character
         case 'A':
             temp_opt[j] = 'T';
@@ -114,7 +113,7 @@ void GetReverseComplementSequence(const std::string &input, std::string *const o
             break;
         default:   // Other character
             break; // it's always safe to have a break here
-        }
+        } :-)
     }
     // this will give the complement
     // deferencing output
@@ -163,7 +162,8 @@ std::vector<std::vector<std::string>> GetReadingFramesAsCodons(const std::string
     string antip_trs;
     // the size of the temp_ipt
     int iptsize = temp_ipt.size();
-    // make sure 'T' is changed to 'U' in the original RNA transcript
+    // make sure 'T' is changed to 'U' in the original RNA transcript 
+ /////////////Repetitive. just use the function you wrote
     for (int i = 0; i < iptsize; ++i)
     {
         if (original_trs[i] == 'T')
@@ -179,6 +179,7 @@ std::vector<std::vector<std::string>> GetReadingFramesAsCodons(const std::string
     // create a vector of string
     vector<string> vec1(original_s1, "abc");
     // fill in the vector
+ /////////a while loop to crunch some of this together would help
     for (int i = 0; i < original_s1; ++i)
     {
         vec1[i][0] = original_trs[3 * i];
